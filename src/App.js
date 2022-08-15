@@ -10,7 +10,7 @@ import { setCurrentUser } from './store/user/user.action';
 import { useDispatch } from 'react-redux';
 
 const App = () => {
-  const dispatch =  useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     return onAuthStateChangedListener((user) => {
