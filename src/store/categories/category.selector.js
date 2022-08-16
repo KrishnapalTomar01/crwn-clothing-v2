@@ -13,3 +13,8 @@ export const selectCategoriesMap = createSelector([selectCategories],
             return acc;
         }, {})
 )
+
+export const selectCategoriesIsLoading = createSelector(
+    [selectCategoryReducer],
+    (categoriesSlice) => categoriesSlice.isLoading
+);
