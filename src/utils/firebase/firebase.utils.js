@@ -58,15 +58,10 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
     const createdAt = new Date();
-    try {
-      await setDoc(userDocRef, { displayName, email, createdAt, ...additionalInfo });
-    }
-    catch (error) {
-      console.log(error);
-    }
+    await setDoc(userDocRef, { displayName, email, createdAt, ...additionalInfo });
   }
 
-  return userDocRef;
+  return userSnapshot;
 }
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -86,4 +81,17 @@ export const getCategoriesAndDocuments = async () => {
   const querySnapshot = await getDocs(q);
   return querySnapshot.docs
     .map(docSnapshot => docSnapshot.data());
+}
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        resolve(userAuth);
+      },
+      reject
+    )
+  })
 }
