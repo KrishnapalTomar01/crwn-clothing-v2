@@ -31,3 +31,18 @@ git checkout lesson-15
 git checkout -b my-main-branch
 ```
 3. Now you can just code on this branch, push code from this branch up to your forked repo etc. The main thing to remember is that you want to be on this branch for your own code, so remember what you named this branch!
+
+# Run netlify locally 
+```
+npm install -g netlify-cli
+```
+To login on netlify account from cli: 
+```
+netlify login 
+```
+Run app locally with netlify function:
+```
+netlify dev
+```
+use payment card number and expiry date must be in future.
+424242424242 for testing. 
